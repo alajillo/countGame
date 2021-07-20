@@ -8,18 +8,21 @@ function Setting() {
 }
 let container = document.getElementById("container");
 let time = document.querySelector(".time");
-let count = 0;
+
 let interval;
 let isPlaying = false;
 function Timer() {
+  let count = 0;
   // 상위에 시간 타이머 표시
   interval = setInterval(function () {
     time.innerText = count.toFixed(2);
     count = count + 0.01;
   }, 10);
 }
-
+let order;
 function start() {
+  order = 1;
+  container.innerHTML = "";
   isPlaying = true;
   if (document.getElementById("container").children.length === 0) Setting(); // 셋팅
   numberRender(); // 숫자 표시 함수
@@ -42,7 +45,6 @@ function numberRender() {
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
-let order = 1;
 
 container.addEventListener("touchstart", (e) => {
   if (isPlaying === false) return 0;

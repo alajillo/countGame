@@ -10,21 +10,23 @@ let container = document.getElementById("container");
 let time = document.querySelector(".time");
 let count = 0;
 let interval;
+let isPlaying = false;
 function Timer() {
   // 상위에 시간 타이머 표시
   interval = setInterval(function () {
-    time.innerText = count;
-    count++;
-  }, 1000);
+    time.innerText = count.toFixed(2);
+    count = count + 0.01;
+  }, 10);
 }
 
 function start() {
+  isPlaying = true;
   if (document.getElementById("container").children.length === 0) Setting(); // 셋팅
   numberRender(); // 숫자 표시 함수
   clearInterval(interval); //시간 타이머 초기화
   Timer(); //시간 타이머 작동
 }
-let arr = []; // 1부터 50까지 숫자 가 들어갈 배열
+let arr = []; // 1부터 9까지 숫자 가 들어갈 배열
 function numberRender() {
   let cards = container.children;
   arr = [];
@@ -40,3 +42,19 @@ function numberRender() {
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
+let order = 1;
+
+container.addEventListener("touchstart", (e) => {
+  if (isPlaying === false) return 0;
+  if (order == e.target.innerText) {
+    e.target.innerText = "";
+    order++;
+  } else {
+    container.innerHTML = "Game Over";
+    isPlaying = false;
+  }
+  if (order === 10) {
+    container.innerHTML = "Good!";
+    isPlaying = false;
+  }
+});

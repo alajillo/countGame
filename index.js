@@ -8,7 +8,6 @@ function Setting() {
 }
 let container = document.getElementById("container");
 let time = document.querySelector(".time");
-
 let interval;
 let isPlaying = false;
 function Timer() {
@@ -58,5 +57,6 @@ container.addEventListener("touchstart", (e) => {
   if (order === 10) {
     container.innerHTML = "Good!";
     isPlaying = false;
+    clearInterval(interval);
   }
 });

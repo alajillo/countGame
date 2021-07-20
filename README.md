@@ -1,3 +1,3 @@
 # countGame
 
-https://alajillo.github.io/countGame/
+https://alajillo.github.io/countGame
